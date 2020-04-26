@@ -1,0 +1,23 @@
+@startuml usecase
+left to right direction
+
+skinparam packageStyle rectangle
+
+actor :お湯を使いたい人: as mainact
+actor :お湯を使える状態にしたい: as subact 
+
+mainact -[hidden]- subact
+
+package 話題沸騰ポット{ 
+usecase (お湯をそそぐ) as Put_Hot_Water
+usecase (時間を計測する) as Mesure_Time
+usecase (水を補給する) as Add_Water
+usecase (水を沸騰させる) as Bring_Boiled_Water
+usecase (保温温度を設定する) as Configure_warm
+mainact -ri- Put_Hot_Water
+Put_Hot_Water --> Mesure_Time : <<extend>>
+subact --> Add_Water
+subact --> Configure_warm
+Add_Water --> Bring_Boiled_Water : <<include>
+}
+@enduml
