@@ -1,0 +1,21 @@
+@startuml context_diagram
+left to right direction
+
+[\n\nポットシステム\n\n] as System_of_Pot
+artifact (水位センサ) as Scenser_of_Water
+artifact (ふたセンサ) as Scenser_of_futa
+artifact (サーミスタ) as Sermista
+artifact (利用者) as user
+artifact (給水ポンプ) as Add_Water_Pomp
+artifact (ヒータ) as Heater
+
+Scenser_of_Water --> System_of_Pot : 水位\n満水\n水なし
+Scenser_of_futa --> System_of_Pot : ふた開閉状態
+Sermista --> System_of_Pot : 水温
+user --> System_of_Pot : ユーザ要求\nユーザ保守
+
+System_of_Pot --> user : 現在状態\n警告重宝
+System_of_Pot --> Add_Water_Pomp : ポンプ作動\nポンプ停止
+System_of_Pot --> Heater : ヒータオン\nヒータ停止
+
+@enduml
